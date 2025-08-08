@@ -21,8 +21,8 @@ const NavItem = ({ text, path, icon, active }) => (
 
 const Account = () => {
   const location = useLocation();
-  const [fullName, setFullName] = useState('Zara Ali');
-  const [email, setEmail] = useState('zaraali@gmail.com');
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [profileImage, setProfileImage] = useState('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face');
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
