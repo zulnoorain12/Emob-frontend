@@ -1,0 +1,55 @@
+/* Form container */
+.form-container {
+  @apply flex flex-col lg:flex-row justify-center items-center 
+         min-h-screen bg-[#f4f6f9] p-4 sm:p-6 lg:p-8 gap-6;
+}
+
+/* Signup heading */
+.signup-heading {
+  @apply text-xl sm:text-2xl text-white text-center font-bold;
+}
+
+/* Logo Icon */
+.logo-icon {
+  @apply w-16 sm:w-20 h-auto mx-auto mb-4 lg:mb-0;
+}
+
+/* Login Icon */
+.login-icon {
+  @apply w-16 sm:w-20 h-auto mx-auto mb-4 lg:mb-0;
+}
+
+/* Login Heading */
+.Login-heading {
+  @apply text-xl sm:text-2xl text-white text-center font-bold;
+}
+
+/* Form Box */
+.form-box {
+  @apply bg-white p-6 sm:p-8 rounded-lg shadow-lg 
+         w-full max-w-xs sm:max-w-sm;
+}
+
+.form-box h2 {
+  @apply mb-4 sm:mb-6 text-[#5b5fc7] text-lg sm:text-xl font-semibold text-center;
+}
+
+.form-box input {
+  @apply block w-full mb-3 sm:mb-4 p-2 sm:p-2.5 
+         border border-gray-300 rounded-md text-sm sm:text-base;
+}
+
+.form-box button {
+  @apply w-full p-2 sm:p-2.5 bg-[#7164ff] text-white 
+         rounded-md text-sm sm:text-base cursor-pointer mt-3 sm:mt-4;
+}
+
+/* Side Image */
+.side-image {
+  @apply w-[250px] sm:w-[350px] lg:w-[500px] h-auto mx-auto;
+}
+
+/* Forgot Password */
+.forgot {
+  @apply text-right text-xs sm:text-sm -mt-2 sm:-mt-3 mb-3 sm:mb-4;
+}

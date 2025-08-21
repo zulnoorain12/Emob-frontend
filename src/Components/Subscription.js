@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './styles.css';
+
+import '../styles/subscription.css';
 import logoImage from '../assets/Icon.png';
 
 import dashboardIcon from '../assets/icons/dashboard.png';
@@ -22,7 +23,7 @@ const NavItem = ({ text, path, icon, active }) => (
 
 export default function Subscription() {
   const location = useLocation();
-  
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   // JavaScript functionality states
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -124,9 +125,23 @@ export default function Subscription() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-flex">
+  {/* ✅ Hamburger button visible only on mobile */}
+        <button 
+          className="hamburger-btn lg:hidden" 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          {sidebarOpen ? "✖" : "☰"}
+        </button>
 
+        {/* ✅ Dark overlay on mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+        )}
         {/* Sidebar */}
-        <aside className="dashboard-sidebar">
+       <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"} lg:open`}>
           <div className="dashboard-logo-wrapper">
             <img src={logoImage} alt="Emob Logo" className="dashboard-logo" />
             <span className="dashboard-logo-text">Emob</span>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './styles.css';
+
+import '../styles/profile.css';
 
 import logoImage from '../assets/Icon.png';
 import dashboardIcon from '../assets/icons/dashboard.png';
@@ -21,6 +22,7 @@ const NavItem = ({ text, path, icon, active }) => (
 
 const Account = () => {
   const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [profileImage, setProfileImage] = useState('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face');
@@ -146,8 +148,23 @@ const Account = () => {
     <div className="dashboard-container">
       <div className="dashboard-flex">
 
+        {/* ✅ Hamburger button visible only on mobile */}
+        <button 
+          className="hamburger-btn lg:hidden" 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          {sidebarOpen ? "✖" : "☰"}
+        </button>
+
+        {/* ✅ Dark overlay on mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+        )}
         {/* Sidebar */}
-        <aside className="dashboard-sidebar">
+         <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"}`}>
           <div className="dashboard-logo-wrapper">
             <img src={logoImage} alt="Logo" className="dashboard-logo" />
             <span className="dashboard-logo-text">Emob</span>

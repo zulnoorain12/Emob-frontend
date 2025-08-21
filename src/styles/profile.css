@@ -1,0 +1,160 @@
+/* Main Content */
+.main-content {
+  @apply ml-[10px] flex-1 p-10 min-h-screen;
+}
+
+.account-container {
+  @apply max-w-[800px] mx-auto;
+}
+
+.page-title {
+  @apply text-[32px] font-semibold text-[#202094] mb-10 text-center font-bold;
+}
+
+.account-content {
+  @apply bg-white rounded-2xl p-10 shadow-md;
+}
+
+/* Form Section (Email & Name first) */
+.form-section {
+  @apply flex flex-col gap-8 mb-10;
+}
+
+.form-row {
+  @apply grid grid-cols-2 gap-6 max-md:grid-cols-1;
+}
+
+.form-group {
+  @apply flex flex-col gap-2;
+}
+
+.form-group label {
+  @apply text-sm font-medium text-black mb-2;
+}
+
+.form-input {
+  @apply py-4 px-5 rounded-2xl text-[15px] bg-gradient-to-br from-[#e8e5ff] to-[#f0edff] text-black font-medium transition-all duration-200 border-none;
+}
+
+.form-input:focus {
+  @apply outline-none -translate-y-[1px] shadow-lg shadow-purple-900/15 bg-gradient-to-br from-[#ddd6fe] to-[#e9d5ff];
+}
+
+.form-input::placeholder {
+  @apply text-purple-400;
+}
+
+/* Profile Section (Now comes after Email & Name) */
+.profile-section {
+  @apply flex justify-center mb-10;
+}
+
+.profile-image-container {
+  @apply relative inline-block;
+}
+
+.profile-image {
+  @apply w-[120px] h-[120px] rounded-full object-cover border-[4px] border-gray-200;
+}
+
+.edit-icon {
+  @apply absolute bottom-2 right-2 bg-indigo-500 text-white rounded-full w-8 h-8 flex items-center justify-center cursor-pointer transition-colors duration-200;
+}
+
+.edit-icon:hover {
+  @apply bg-indigo-600;
+}
+
+/* Action Buttons */
+.action-buttons {
+  @apply grid grid-cols-2 gap-4 max-md:grid-cols-1;
+}
+
+.action-btn {
+  @apply flex items-center gap-3 py-5 px-6 rounded-2xl text-[15px] font-medium cursor-pointer transition-all duration-200 bg-gradient-to-br from-[#e8e5ff] to-[#f0edff] text-black text-left;
+}
+
+.action-btn:hover {
+  @apply -translate-y-[1px] shadow-lg shadow-purple-900/15 bg-gradient-to-br from-[#ddd6fe] to-[#e9d5ff];
+}
+
+.btn-icon {
+  @apply flex items-center justify-center w-8 h-8 rounded-lg bg-purple-900/10 shrink-0;
+}
+
+.btn-icon svg {
+  @apply text-black;
+}
+
+/* Delete Section */
+.delete-section {
+  @apply pt-6;
+}
+
+.delete-account-box {
+  @apply bg-gradient-to-br from-[#e8e5ff] to-[#f0edff] rounded-2xl py-5 px-6 transition-all duration-200 cursor-pointer;
+}
+
+.delete-account-box:hover {
+  @apply -translate-y-[1px] shadow-lg shadow-purple-900/15 bg-gradient-to-br from-[#ddd6fe] to-[#e9d5ff];
+}
+
+.delete-account-title {
+  @apply text-black text-[15px] font-medium mb-2;
+}
+
+.delete-account-description {
+  @apply text-gray-500 text-sm leading-relaxed;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-[2000];
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl p-8 w-[90%] max-w-[500px] max-h-[90vh] overflow-y-auto;
+}
+
+.modal-content h2 {
+  @apply mb-6 text-2xl font-semibold text-gray-800;
+}
+
+.modal-form {
+  @apply flex flex-col gap-5;
+}
+
+.modal-buttons {
+  @apply flex gap-4 justify-end mt-6;
+}
+
+.btn-cancel,
+.btn-confirm,
+.btn-danger {
+  @apply py-3 px-6 rounded-lg font-semibold cursor-pointer transition-all duration-200 border-2 border-transparent;
+}
+
+.btn-cancel {
+  @apply bg-gray-100 text-gray-500;
+}
+.btn-cancel:hover {
+  @apply bg-gray-200;
+}
+
+.btn-confirm {
+  @apply bg-indigo-500 text-white;
+}
+.btn-confirm:hover {
+  @apply bg-indigo-600;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white;
+}
+.btn-danger:hover {
+  @apply bg-red-700;
+}
+
+.modal-warning {
+  @apply text-gray-500 leading-relaxed mb-6;
+}

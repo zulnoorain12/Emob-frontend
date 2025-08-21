@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './styles.css';
+
+import '../styles/customization.css'; // Tailwind layer file
 
 import logoImage from '../assets/Icon.png';
 import dashboardIcon from '../assets/icons/dashboard.png';
@@ -12,6 +13,9 @@ import documentationIcon from '../assets/icons/documentation.png';
 import contactIcon from '../assets/icons/contact.png';
 import profileIcon from '../assets/icons/profile.png';
 
+// 👇 Import your bot avatar image
+import botAvatar from '../assets/Icon.png';
+
 const NavItem = ({ text, path, icon, active }) => (
   <Link to={path} className={`nav-item ${active ? 'active' : ''}`}>
     <img src={icon} alt={`${text} icon`} className="nav-img" />
@@ -21,9 +25,14 @@ const NavItem = ({ text, path, icon, active }) => (
 
 export default function Customization() {
   const location = useLocation();
+
+    // ✅ Sidebar toggle for mobile
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const [theme, setTheme] = useState("light");
   const [accentColor, setAccentColor] = useState("#00C897");
   const [botColor, setBotColor] = useState("#7f7fff");
+  const [multiTheme, setMultiTheme] = useState(false);
 
   const accentOptions = ["#FFC107", "#00C897", "#4B47FF", "#FF5733"];
   const botOptions = ["#7f7fff", "#ff66cc"];
@@ -31,9 +40,25 @@ export default function Customization() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-flex">
+        {/* ✅ Hamburger button visible only on mobile */}
+        <button 
+          className="hamburger-btn lg:hidden" 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          {sidebarOpen ? "✖" : "☰"}
+        </button>
+
+        {/* ✅ Dark overlay on mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+        )}
+
 
         {/* Sidebar */}
-        <aside className="dashboard-sidebar">
+         <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"}`}>
           <div className="dashboard-logo-wrapper">
             <img src={logoImage} alt="Logo" className="dashboard-logo" />
             <span className="dashboard-logo-text">Emob</span>
@@ -74,19 +99,20 @@ export default function Customization() {
                   {accentOptions.map((color, index) => (
                     <span
                       key={index}
-                      className={`color-dot ${accentColor === color ? "selected" : ""}`}
+                      className={`color-dot ${!multiTheme && accentColor === color ? "selected" : ""}`}
                       style={{ backgroundColor: color }}
-                      onClick={() => setAccentColor(color)}
+                      onClick={() => {
+                        setAccentColor(color);
+                        setMultiTheme(false);
+                      }}
                     />
                   ))}
 
                   {/* Multicolor Circle */}
                   <span
-                    className="color-dot multicolor-dot"
-                    title="Random Color"
-                    onClick={() =>
-                      setAccentColor(accentOptions[Math.floor(Math.random() * accentOptions.length)])
-                    }
+                    className={`color-dot multicolor-dot ${multiTheme ? "selected" : ""}`}
+                    title="Multicolor Theme"
+                    onClick={() => setMultiTheme(true)}
                   />
                 </div>
               </div>
@@ -107,10 +133,31 @@ export default function Customization() {
             </div>
 
             {/* Chat Preview */}
-            <div className={`chat-preview-box ${theme}`}>
-              <div className="chat-bubble bot" style={{ backgroundColor: botColor }}>Bot message here</div>
-              <div className="chat-bubble user" style={{ backgroundColor: accentColor }}>User message here</div>
+            <div
+              className={`chat-preview-box ${theme} ${multiTheme ? "theme-multi" : ""}`}
+              style={!multiTheme ? { "--primary": accentColor } : {}}
+
+            >
+              {/* Bot message with avatar */}
+              <div className="chat-row">
+                <img src={botAvatar} alt="Bot Avatar" className="chat-avatar" />
+                <div className="chat-bubble bot" style={{ backgroundColor: botColor }}>
+                  Bot message here
+                </div>
+              </div>
+
+              {/* User message */}
+              <div
+                className="chat-bubble user"
+                style={!multiTheme ? { backgroundColor: accentColor } : {}}
+              >
+                User message here
+              </div>
+
+              {/* Suggested message */}
               <div className="chat-bubble suggestion">Suggested message here</div>
+
+              {/* Input */}
               <input type="text" className="chat-input" placeholder="Type your message here..." />
             </div>
           </div>

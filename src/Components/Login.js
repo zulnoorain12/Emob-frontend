@@ -1,25 +1,28 @@
-// src/components/Login.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import { useNavigate, Link } from 'react-router-dom';
+import { loginUser } from '../api/auth';
+
+import '../styles/authentication.css';
 import loginRobot from '../assets/rest.png';
 import logoIcon from '../assets/Icon.png';
-import { Link } from 'react-router-dom';
 
 export default function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const data = await loginUser(username, password);
+      console.log("Login Success:", data);
 
-    // ✅ Dummy login check (replace with real auth later)
-    if (username && password) {
-      // Redirect to dashboard
+      localStorage.setItem("access_token", data.access);
+      localStorage.setItem("refresh_token", data.refresh);
+
       navigate('/dashboard');
-    } else {
-      alert('Please enter both username and password');
+    } catch (error) {
+      alert(error.message);
     }
   };
 
@@ -31,7 +34,7 @@ export default function Login() {
         
         <input
           type="text"
-          placeholder="Enter your name..."
+          placeholder="Enter your username..."
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -43,14 +46,13 @@ export default function Login() {
         />
         
         <div className="forgot">
-          <Link to="#">Forgot Password?</Link>
-        </div>
+          <Link to="/forgot-password">Forgot Password?</Link>
+      </div>
         
         <button type="submit">Login</button>
         
         <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
       </form>
-      
       <img src={loginRobot} alt="Chatbot" className="side-image" />
     </div>
   );

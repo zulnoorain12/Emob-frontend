@@ -11,6 +11,9 @@ import Subscription from './Components/Subscription';
 import Documentation from './Components/Documentation';
 import ContactUs from './Components/ContactUs';
 import Profile from './Components/Profile';
+import ForgotPassword from "./Components/ForgotPassword";
+import ResetPassword from "./Components/ResetPassword";
+
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -39,6 +42,8 @@ function App() {
         <Route path="/dashboard/documentation" element={<Documentation />} />
         <Route path="/dashboard/contact" element={<ContactUs />} />
         <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:uid/:token" element={<ResetPassword/>} />
       </Routes>
     </Router>
   );

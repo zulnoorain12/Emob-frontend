@@ -1,0 +1,76 @@
+/* Chat Demo */
+.chat-main {
+  @apply flex-1 p-4 sm:p-6 md:p-10;
+}
+
+.chat-header {
+  @apply text-center text-2xl sm:text-3xl mb-4 sm:mb-5 text-[#1f2676] font-bold;
+}
+
+.chat-messages {
+  @apply flex-grow overflow-y-auto;
+}
+
+.chat-message {
+  @apply my-2.5 max-w-[85%] sm:max-w-[80%] px-3 py-2 sm:px-3.5 sm:py-2.5 
+         rounded-2xl text-sm sm:text-base leading-snug whitespace-pre-line;
+}
+
+.chat-message.bot {
+  @apply bg-white self-start text-black;
+}
+
+.chat-message.user {
+  @apply bg-[#5c67ff] self-end text-white;
+}
+
+.chat-input-area {
+  @apply flex gap-2.5 mt-2.5;
+}
+
+.chat-input-area input {
+  @apply flex-1 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border-0 outline-none text-sm sm:text-base;
+}
+
+.chat-input-area button {
+  @apply bg-[#5c67ff] text-white border-0 rounded-full w-[36px] h-[36px] sm:w-[38px] sm:h-[38px] 
+         cursor-pointer text-sm sm:text-base;
+}
+
+/* Table */
+table {
+  @apply w-full border-collapse;
+}
+
+.table-wrapper {
+  @apply overflow-x-auto;
+}
+
+/* ---------------- Responsive Chat Box ---------------- */
+
+/* Default (mobile first) */
+.chat-box {
+  @apply bg-[#2c2c6b] rounded-2xl p-4 h-[400px] w-full mx-auto flex flex-col justify-between;
+}
+
+/* Tablets and above */
+@media (min-width: 640px) {
+  .chat-box {
+    @apply p-5 h-[500px] max-w-[400px];
+  }
+
+  .chat-header {
+    @apply text-3xl;
+  }
+
+  .chat-message {
+    @apply text-base;
+  }
+}
+
+/* Desktops and above */
+@media (min-width: 1024px) {
+  .chat-box {
+    @apply h-[550px];
+  }
+}

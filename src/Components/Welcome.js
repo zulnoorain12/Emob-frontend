@@ -1,6 +1,7 @@
 // src/components/Welcome.js
 import React from 'react';
-import './styles.css';
+
+import '../styles/welcome.css';
 import welcomeImage from '../assets/Icon.png';
 import backgroundImage from '../assets/background.png'; // import background
 import { useNavigate } from 'react-router-dom';

@@ -1,0 +1,193 @@
+/* Dashboard Container */
+.dashboard-container {
+  @apply min-h-screen bg-gray-100 p-4 md:p-6;
+}
+
+/* Flex Wrapper */
+.dashboard-flex {
+  @apply flex relative;
+}
+
+/* ✅ Hamburger Button (mobile only) */
+.hamburger-btn {
+  @apply fixed top-4 left-4 z-40 p-2 rounded-md bg-indigo-600 text-white text-xl shadow-md lg:hidden;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  @apply fixed top-0 left-0 h-full w-64 bg-[#0f0b59] text-white
+          rounded-r-2xl p-6 transform -translate-x-full
+          transition-transform duration-300 ease-in-out
+          flex flex-col z-40;
+}
+
+.dashboard-sidebar.open {
+  @apply translate-x-0; /* slide in on mobile */
+}
+
+.dashboard-sidebar.closed {
+  @apply -translate-x-full; /* slide out on mobile */
+}
+
+/* Desktop: Fixed sidebar, always visible */
+@screen lg {
+  .dashboard-sidebar {
+    @apply static translate-x-0 rounded-[50px] h-screen mr-6 w-64;
+    /* Remove transform classes for desktop */
+    transform: none !important;
+  }
+  
+  .dashboard-sidebar.open,
+  .dashboard-sidebar.closed {
+    @apply translate-x-0;
+    transform: none !important;
+  }
+}
+
+/* Logo */
+.dashboard-logo-wrapper {
+  @apply flex items-center gap-2 mb-6 mt-4;
+}
+
+.dashboard-logo {
+  @apply w-8 h-8 md:w-10 md:h-10 rounded-lg;
+}
+
+.dashboard-logo-text {
+  @apply text-2xl md:text-4xl font-bold;
+}
+
+/* Nav */
+.dashboard-nav {
+  @apply flex flex-col gap-3 mt-6;
+}
+
+.nav-item {
+  @apply flex items-center gap-3 px-4 py-2 rounded-md cursor-pointer
+          transition-colors duration-200 text-sm md:text-base no-underline;
+}
+
+.nav-item:hover {
+  @apply bg-white/10;
+}
+
+.nav-item.active {
+  @apply bg-white/20 shadow-md;
+}
+
+.nav-img {
+  @apply w-[18px] h-[18px] object-contain;
+}
+
+/* Main */
+.dashboard-main {
+  @apply flex-1 flex flex-col gap-6 mt-16 lg:mt-0 lg:ml-0;
+}
+
+/* Header */
+.dashboard-header {
+  @apply flex flex-col md:flex-row md:items-center justify-between gap-4;
+}
+
+.dashboard-heading {
+@apply text-lg md:text-2xl font-semibold w-full block;
+}
+
+
+/* Refresh Button */
+.refresh-btn {
+  @apply bg-blue-500 text-white px-3 py-1 rounded-md text-sm cursor-pointer hover:bg-blue-600;
+}
+
+/* Stats */
+.dashboard-stats {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-green-600;
+}
+
+.stat-card {
+  @apply bg-white p-4 rounded-xl text-center shadow-sm;
+}
+
+.stat-card p {
+  @apply text-gray-500 text-sm;
+}
+
+.stat-card h3 {
+  @apply text-2xl font-bold mt-2;
+}
+
+.trend-indicator {
+  @apply text-xs text-green-500 font-medium;
+}
+
+/* Section */
+.dashboard-section {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-4;
+}
+
+.dashboard-card {
+  @apply bg-white p-4 rounded-xl shadow-sm;
+}
+
+/* Headings inside cards */
+.embedcode, .preview, .customize, .subscription, .recent {
+  @apply font-bold text-lg mb-3;
+}
+
+/* Embed box */
+.embed-box {
+  @apply flex flex-col sm:flex-row justify-between items-start sm:items-center
+          bg-gray-100 p-2 rounded-md text-xs gap-2;
+}
+
+.chatbot-mini-preview {
+  @apply bg-gray-50 p-3 rounded-md text-center text-gray-600 border-2 border-dashed border-gray-300;
+}
+
+.customize-p {
+  @apply mt-3 text-gray-600;
+}
+
+/* Button */
+.btn-primary {
+  @apply bg-indigo-600 text-white px-4 py-2 rounded-md text-sm
+          cursor-pointer mt-3 shadow-sm hover:bg-indigo-700 transition-colors;
+}
+
+.btn-primary.copied {
+  @apply bg-green-600 hover:bg-green-700;
+}
+
+/* Activity List */
+.activity-list {
+  @apply text-sm leading-6 space-y-3;
+}
+
+.activity-item {
+  @apply flex items-center gap-2;
+}
+
+.activity-dot {
+  @apply w-2 h-2 rounded-full flex-shrink-0;
+}
+
+.activity-dot.green {
+  @apply bg-green-500;
+}
+
+.activity-dot.blue {
+  @apply bg-blue-500;
+}
+
+.activity-list span {
+  @apply text-gray-500;
+}
+
+/* Usage Bar */
+.usage-bar {
+  @apply w-full h-2 bg-gray-200 rounded-md mt-2;
+}
+
+.usage-fill {
+  @apply h-2 bg-indigo-600 rounded-md;
+}

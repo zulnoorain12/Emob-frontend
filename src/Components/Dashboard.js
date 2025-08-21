@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './styles.css';
+import '../styles/dashboard.css';
 import logoImage from '../assets/Icon.png';
 
 import dashboardIcon from '../assets/icons/dashboard.png';
@@ -15,7 +15,10 @@ import profileIcon from '../assets/icons/profile.png';
 export default function Dashboard() {
   const location = useLocation();
 
-  // ✅ Added state for enhanced functionality
+  // ✅ Sidebar toggle for mobile
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // ✅ Other states
   const [copied, setCopied] = useState(false);
   const [stats, setStats] = useState({
     conversations: 152,
@@ -23,7 +26,7 @@ export default function Dashboard() {
     conversionRate: 18
   });
 
-  // ✅ Enhanced function to copy embed code to clipboard with feedback
+  // ✅ Copy embed code
   const copyToClipboard = () => {
     const embedCode = `<script src='http://cdh.emob.com/embed.js'></script>`;
     navigator.clipboard.writeText(embedCode)
@@ -34,7 +37,7 @@ export default function Dashboard() {
       .catch(() => alert("Failed to copy embed code."));
   };
 
-  // ✅ Function to refresh stats (simulate real-time updates)
+  // ✅ Refresh stats
   const refreshStats = () => {
     setStats({
       conversations: stats.conversations + Math.floor(Math.random() * 5),
@@ -47,8 +50,24 @@ export default function Dashboard() {
     <div className="dashboard-container">
       <div className="dashboard-flex">
 
+        {/* ✅ Hamburger button visible only on mobile */}
+        <button 
+          className="hamburger-btn lg:hidden" 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          {sidebarOpen ? "✖" : "☰"}
+        </button>
+
+        {/* ✅ Dark overlay on mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+        )}
+
         {/* Sidebar */}
-        <aside className="dashboard-sidebar">
+       <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"}`}>
           <div className="dashboard-logo-wrapper">
             <img src={logoImage} alt="Emob Logo" className="dashboard-logo" />
             <span className="dashboard-logo-text">Emob</span>
@@ -71,6 +90,7 @@ export default function Dashboard() {
           {/* ✅ Enhanced header with refresh button */}
           <div className="dashboard-header">
             <h2 className="dashboard-heading">Hi Zara, here's your chatbot performance</h2>
+           
             <button className="refresh-btn" onClick={refreshStats} title="Refresh Stats">
               🔄 Refresh
             </button>
@@ -84,10 +104,9 @@ export default function Dashboard() {
 
           <div className="dashboard-section">
             <div className="dashboard-card">
-              <h3>Embed Code</h3>
+              <h3 className='embedcode'>Embed Code</h3>
               <div className="embed-box">
                 <code>&lt;script src='http://cdh.emob.com/embed.js'&gt;&lt;/script&gt;</code>
-                {/* ✅ Enhanced copy button with feedback */}
                 <button 
                   className={`btn-primary ${copied ? 'copied' : ''}`} 
                   onClick={copyToClipboard}
@@ -95,18 +114,16 @@ export default function Dashboard() {
                   {copied ? '✓ Copied!' : 'Copy to Clipboard'}
                 </button>
               </div>
-              {/* ✅ Added preview section */}
               <div className="embed-preview">
-                <p>Preview:</p>
+                <p className='preview'>Preview:</p>
                 <div className="chatbot-mini-preview">
                   💬 Your chatbot will appear here
                 </div>
               </div>
             </div>
             <div className="dashboard-card">
-              <h3>Customize Your Chatbot</h3>
-              <p>Adjust the appearance of your chatbot to match your brand</p>
-              {/* ✅ Enhanced with Link to customization page */}
+              <h3 className='customize'>Customize Your Chatbot</h3>
+              <p className='customize-p'>Adjust the appearance of your chatbot to match your brand</p>
               <Link to="/dashboard/customization">
                 <button className="btn-primary">Customize</button>
               </Link>
@@ -115,7 +132,7 @@ export default function Dashboard() {
 
           <div className="dashboard-section">
             <div className="dashboard-card">
-              <h3>Recent Activity</h3>
+              <h3 className='recent'>Recent Activity</h3>
               <ul className="activity-list">
                 <li className="activity-item">
                   <span className="activity-dot green"></span>
@@ -132,17 +149,15 @@ export default function Dashboard() {
               </ul>
             </div>
             <div className="dashboard-card">
-              <h3>Subscription</h3>
+              <h3 className='subscription'>Subscription</h3>
               <p>Current Plan: <strong>Pro</strong></p>
               <p>Renewal Date: <strong>May 15, 2025</strong></p>
-              {/* ✅ Added usage bar */}
               <div className="usage-indicator">
                 <div className="usage-bar">
                   <div className="usage-fill" style={{width: '15.2%'}}></div>
                 </div>
                 <small>{stats.conversations}/1000 conversations used</small>
               </div>
-              {/* ✅ Enhanced with Link to subscription page */}
               <Link to="/dashboard/subscription">
                 <button className="btn-primary">Upgrade Plan</button>
               </Link>
@@ -163,7 +178,6 @@ function NavItem({ text, path, active, icon }) {
   );
 }
 
-// ✅ Enhanced StatCard with trend indicator
 function StatCard({ label, value, trend }) {
   return (
     <div className="stat-card">

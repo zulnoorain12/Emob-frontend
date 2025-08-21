@@ -1,6 +1,9 @@
-// src/components/Loading.js
+// src/components/Loading.js//
+
 import React from 'react';
-import './styles.css';
+
+import '../styles/loading.css';
+
 import loaderIcon from '../assets/Icon.png';
 
 export default function Loading() {

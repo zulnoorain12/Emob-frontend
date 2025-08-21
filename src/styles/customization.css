@@ -1,0 +1,105 @@
+/* === Wrapper === */
+.customization-wrapper {
+  @apply min-h-screen;
+}
+
+/* === Main Area === */
+.customization-main {
+  @apply flex-1 h-full overflow-y-auto px-6 md:px-12 py-6 md:py-8;
+}
+
+.customization-title {
+  @apply text-center text-[24px] md:text-[32px] text-[#20168a] font-bold mb-8 md:mb-12 mt-8 md:mt-12 ml-10 md:ml-12;
+}
+
+/* Subtitle */
+.customization-subtitle {
+  @apply text-left mb-4 md:mb-6 text-[16px] md:text-[18px] text-[#333] font-bold;
+}
+
+/* === Layout === */
+.customization-content {
+  @apply flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8 lg:gap-16 xl:gap-40;
+}
+
+/* === Left Controls === */
+.customization-left {
+  @apply flex flex-col gap-6 w-full sm:min-w-[280px] sm:max-w-[400px] md:min-w-[350px] lg:min-w-[400px] lg:max-w-[500px];
+}
+
+/* Theme Buttons */
+.theme-buttons {
+  @apply flex gap-3 sm:gap-4 flex-wrap sm:flex-nowrap;
+}
+.theme-buttons button {
+  @apply flex items-center justify-center gap-2 px-4 md:px-5 py-2 rounded-xl border border-gray-300 
+         bg-white cursor-pointer transition-colors duration-200 h-[40px] md:h-[45px] w-[100px] md:w-[120px] text-xs md:text-sm font-medium;
+}
+.theme-buttons .active {
+  @apply bg-[#5a4fcf] text-white border-[#5a4fcf];
+}
+
+/* Color Options */
+.color-options {
+  @apply flex flex-wrap gap-3 select-none;
+}
+.color-dot {
+  @apply w-7 h-7 md:w-8 md:h-8 rounded-full cursor-pointer border border-gray-300
+         shadow-md inline-block transition-transform duration-150;
+}
+.color-dot:hover { @apply scale-105; }
+.color-dot.selected {
+  @apply ring-2 ring-[#5a4fcf] ring-offset-2;
+}
+
+/* Multicolor dot */
+.color-dot.multicolor-dot {
+  background: conic-gradient(
+    #ff0000, #ff9900, #ffff00,
+    #00ff00, #00ffff, #0000ff,
+    #9900ff, #ff00ff, #ff0000
+  );
+  border: none;
+}
+
+/* === Chat Preview Box === */
+.chat-preview-box {
+  @apply flex flex-col gap-6 md:gap-8 flex-1 w-full sm:min-w-[300px] sm:max-w-[400px] md:min-w-[350px] md:max-w-[450px] min-h-[300px] md:min-h-[350px]
+         bg-white p-4 md:p-5 rounded-2xl border border-gray-200 shadow-lg;
+}
+.chat-preview-box.dark {
+  @apply bg-[#2b2b2b] text-white;
+}
+
+/* Chat Row */
+.chat-row {
+  @apply flex items-start gap-2;
+}
+.chat-avatar {
+  @apply w-7 h-7 md:w-8 md:h-8 rounded-full object-cover border border-gray-300;
+}
+
+/* Chat Bubbles */
+.chat-bubble {
+  @apply px-3 md:px-4 py-2 rounded-2xl w-fit max-w-[85%] md:max-w-[75%] text-xs md:text-sm shadow-sm;
+}
+.chat-bubble.bot {
+  @apply self-start bg-gray-100 text-gray-700;
+}
+.chat-bubble.user {
+  @apply self-end bg-[#5a4fcf] text-white;
+}
+.chat-bubble.suggestion {
+  @apply self-center border border-emerald-400 text-emerald-600 bg-white 
+         text-xs md:text-sm px-2 md:px-3 py-1 rounded-full cursor-pointer;
+}
+
+/* Chat Messages Container */
+.chat-messages {
+  @apply flex flex-col gap-3 md:gap-4 flex-1 overflow-y-auto;
+}
+
+/* Chat Input */
+.chat-input {
+  @apply mt-3 px-3 md:px-4 py-2 rounded-full border border-gray-300 text-xs md:text-sm w-full outline-none;
+}

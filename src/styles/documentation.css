@@ -1,0 +1,76 @@
+/* Documentation Main */
+.documentation-main {
+  @apply flex-1 px-6 sm:px-10 md:px-[60px] py-8 bg-[#f6f6fb] overflow-y-auto min-h-screen;
+}
+
+/* Heading & Subheading */
+.document-heading {
+  @apply text-[24px] sm:text-[28px] md:text-[32px] text-[#37317a] font-bold mb-3 text-center;
+}
+
+.document-subheading {
+  @apply text-[16px] sm:text-[18px] md:text-[20px] text-[#141414] mb-7 text-center;
+}
+
+/* Section Title */
+.doc-section-title {
+  @apply text-[18px] sm:text-[20px] md:text-[22px] text-[#0d0d0e] font-bold mb-5 pl-4 md:pl-[5%];
+}
+
+/* Cards Container → 1 column on mobile, 2 on md+ */
+.doc-cards {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[900px] mx-auto py-5;
+}
+
+/* Individual Card */
+.doc-card {
+  @apply bg-white p-4 sm:p-5 rounded-xl shadow-md transition-transform duration-200 ease-in-out text-left relative z-[1] w-full;
+}
+
+.doc-card:hover {
+  @apply -translate-y-1 shadow-xl z-[2];
+}
+
+.doc-card h3 {
+  @apply text-base sm:text-lg text-[#040404] mb-2.5 font-bold;
+}
+
+.doc-card p {
+  @apply text-sm sm:text-[15px] text-[#020202] mb-2.5 leading-relaxed;
+}
+
+/* Read More Button */
+.read-more {
+  @apply text-[13px] sm:text-[14px] font-medium text-[#4a3aff] cursor-pointer bg-transparent border-none p-0;
+}
+.read-more:hover {
+  @apply underline;
+}
+
+/* Expanded Card Content */
+.card-expanded-content {
+  @apply mt-6 pt-6 border-t border-[#e9ecef];
+}
+
+/* Steps Section */
+.steps-title {
+  @apply text-[#2c3e50] text-[1rem] sm:text-[1.1rem] font-semibold mb-4 flex items-center;
+}
+.steps-title::before {
+  content: "📋";
+  @apply mr-2 text-base sm:text-lg;
+}
+
+.steps-list {
+  @apply bg-[#f8f9fa] rounded-md p-4 sm:p-6 border border-[#e9ecef];
+}
+
+.step-item {
+  @apply text-[#495057] font-sans text-[0.9rem] sm:text-[0.95rem] leading-[1.6] py-2 border-b border-[#e9ecef];
+}
+.step-item:last-child {
+  @apply border-b-0;
+}
+.step-item:hover {
+  @apply bg-[#e9ecef] sm:mx-[-1rem] px-3 sm:px-4 rounded;
+}

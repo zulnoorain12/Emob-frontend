@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './styles.css';
+
+import '../styles/documentation.css';
 
 
 import logoImage from '../assets/Icon.png';
@@ -45,6 +46,9 @@ const DocCard = ({ id, title, description, expanded, onToggle, steps }) => (
 
 export default function DocumentationPage() {
   const location = useLocation();
+
+   // ✅ Sidebar toggle for mobile
+      const [sidebarOpen, setSidebarOpen] = useState(false);
   const [expandedCard, setExpandedCard] = useState(null);
 
   const toggleCard = (cardId) => {
@@ -55,8 +59,24 @@ export default function DocumentationPage() {
     <div className="dashboard-container">
       <div className="dashboard-flex">
 
+        {/* ✅ Hamburger button visible only on mobile */}
+        <button 
+          className="hamburger-btn lg:hidden" 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          {sidebarOpen ? "✖" : "☰"}
+        </button>
+
+        {/* ✅ Dark overlay on mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+        )}
+
         {/* Sidebar */}
-        <aside className="dashboard-sidebar">
+         <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"}`}>
           <div className="dashboard-logo-wrapper">
             <img src={logoImage} alt="Logo" className="dashboard-logo" />
             <span className="dashboard-logo-text">Emob</span>
@@ -76,8 +96,8 @@ export default function DocumentationPage() {
 
         {/* Documentation Content */}
         <main className="documentation-main">
-          <h1 className="doc-heading">Documentation</h1>
-          <p className="doc-subheading">
+          <h1 className="document-heading">Documentation</h1>
+          <p className="document-subheading">
             Everything you need to integrate, customize, and optimize your AI chatbot
           </p>
 

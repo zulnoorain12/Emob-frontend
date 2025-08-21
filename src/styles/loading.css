@@ -1,0 +1,14 @@
+/* Loading Screen Container */
+.loading-container {
+  @apply flex flex-col items-center justify-center h-screen bg-[#f4f6f9] px-4;
+}
+
+/* Loader Image */
+.loader-img {
+  @apply w-16 sm:w-20 md:w-24 lg:w-28 mb-3 sm:mb-4;
+}
+
+/* Loading Text */
+.loading-container p {
+  @apply text-[#5b5fc7] text-base sm:text-lg md:text-xl lg:text-2xl text-center leading-snug;
+}

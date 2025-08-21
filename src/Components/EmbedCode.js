@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoImage from '../assets/Icon.png';
 
+import '../styles/embed.css';
 import dashboardIcon from '../assets/icons/dashboard.png';
 import embedIcon from '../assets/icons/embed.png';
 import customizationIcon from '../assets/icons/customization.png';
@@ -16,6 +17,8 @@ export default function EmbedCodePage() {
   const [selectedTab, setSelectedTab] = useState('html');
   const [copied, setCopied] = useState(false);
   const location = useLocation();
+  // ✅ Sidebar toggle for mobile
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const codeSnippets = {
     standard: {
@@ -137,7 +140,23 @@ window.ChatbotAdvanced = {
   return (
     <div className="dashboard-container">
       <div className="dashboard-flex">
-        <aside className="dashboard-sidebar">
+        
+        {/* ✅ Hamburger button visible only on mobile */}
+        <button 
+          className="hamburger-btn lg:hidden" 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          {sidebarOpen ? "✖" : "☰"}
+        </button>
+
+        {/* ✅ Dark overlay on mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+        )}
+            <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"} lg:open`}>
           <div className="dashboard-logo-wrapper">
             <img src={logoImage} alt="Emob Logo" className="dashboard-logo" />
             <span className="dashboard-logo-text">Emob</span>
