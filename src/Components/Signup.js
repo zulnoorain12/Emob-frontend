@@ -6,11 +6,10 @@ import '../styles/authentication.css';
 import signupRobot from '../assets/robooo.PNG';
 import logoIcon from '../assets/Icon.png';
 
-
 export default function SignUp() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');  // ✅ changed from phone → email
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -24,7 +23,7 @@ export default function SignUp() {
 
     try {
       // 1️⃣ Signup user
-      await signupUser(username, password, confirmPassword, phone);
+      await signupUser(username, email, password, confirmPassword);
 
       // 2️⃣ Auto-login after signup
       const data = await loginUser(username, password);
@@ -50,24 +49,31 @@ export default function SignUp() {
           placeholder="Enter your username..."
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
+
         <input
-          type="text"
-          placeholder="Enter your phone number..."
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          type="email"
+          placeholder="Enter your email..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
+
         <input
           type="password"
           placeholder="Enter your password..."
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
+
         <input
           type="password"
           placeholder="Confirm your password..."
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          required
         />
 
         <button type="submit">Sign up</button>

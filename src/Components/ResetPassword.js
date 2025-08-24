@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { resetPassword } from "../api/auth";
+import "../styles/ResetPassword.css"; // import the CSS file
 
 function ResetPassword() {
   const { uidb64, token } = useParams();
@@ -23,15 +24,16 @@ function ResetPassword() {
   };
 
   return (
-    <div>
-      <h2>Reset Password</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="reset-container">
+      <h2 className="reset-title">Reset Password</h2>
+      <form onSubmit={handleSubmit} className="reset-form">
         <input
           type="password"
           placeholder="Enter new password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
+          className="reset-input"
         />
         <input
           type="password"
@@ -39,10 +41,13 @@ function ResetPassword() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
+          className="reset-input"
         />
-        <button type="submit">Reset Password</button>
+        <button type="submit" className="reset-button">
+          Reset Password
+        </button>
       </form>
-      <p>{message}</p>
+      <p className="reset-message">{message}</p>
     </div>
   );
 }

@@ -43,7 +43,7 @@ function App() {
         <Route path="/dashboard/contact" element={<ContactUs />} />
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password/:uid/:token" element={<ResetPassword/>} />
+        <Route path="/reset-password/:uidb64/:token" element={<ResetPassword/>} />
       </Routes>
     </Router>
   );

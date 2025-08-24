@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { forgotPassword } from "../api/auth";
+import "../styles/ForgotPassword.css"; // import the CSS file
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -16,19 +17,22 @@ function ForgotPassword() {
   };
 
   return (
-    <div>
-      <h2>Forgot Password</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="forgot-container">
+      <h2 className="forgot-title">Forgot Password</h2>
+      <form onSubmit={handleSubmit} className="forgot-form">
         <input
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="forgot-input"
         />
-        <button type="submit">Send Reset Link</button>
+        <button type="submit" className="forgot-button">
+          Send Reset Link
+        </button>
       </form>
-      <p>{message}</p>
+      <p className="forgot-message">{message}</p>
     </div>
   );
 }

@@ -22,13 +22,13 @@ async function apiRequest(url, method, body = null) {
   }
 }
 
-// ✅ Signup user
-export function signupUser(username, password, password2, phone) {
+// ✅ Signup user (with email instead of phone)
+export function signupUser(username, email, password, password2) {
   return apiRequest(`${BASE_URL}/signup/`, "POST", {
     username,
+    email,
     password,
     password2,
-    phone,
   });
 }
 
